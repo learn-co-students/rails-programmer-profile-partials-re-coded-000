@@ -1,7 +1,7 @@
-<%= link_to '<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>'.html_safe, root_path %>
+%= link_to '<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>'.html_safe, root_path %>
 
 <h3>
-  <%= @programmer.name %> | <%= formatted_date(@programmer.birth_date) %> - <%= formatted_date(@programmer.death_date) %>
+  <%= render partial: 'programmer', locals: {:programmer => @programmer }%> | <%= formatted_date(@programmer.birth_date) %> - <%= formatted_date(@programmer.death_date) %>
 </h3>
 
 <div class="row jumbotron">
@@ -11,18 +11,10 @@
   </div>
 
   <div class="col-md-9 programmer-info">
+     <%= render partial: 'attribute', locals: {:attr => "Home Country",:value => @programmer.home_country}%>
+     <%= render partial: 'attribute', locals: {:attr => "Quote",:value => @programmer.quote}%>
+     <%= render partial: 'attribute', locals: {:attr => "Claim To Fame",:value => @programmer.claim_to_fame}%>
 
-    <p>
-    <strong>Home Country:</strong> <%= @programmer.home_country %><br>
-    </p>
-
-    <p>
-    <strong>Quote:</strong> <%= @programmer.quote %><br>
-    </p>
-
-    <p>
-    <strong>Claim To Fame:</strong> <%= @programmer.claim_to_fame %>
-    </p>
 
     <p>
     <%= link_to "Learn more about #{@programmer.name}", @programmer.wikipedia_page, target: '_blank' %>
@@ -30,4 +22,3 @@
 
   </div>
 </div>
-
